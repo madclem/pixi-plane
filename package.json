@@ -1,0 +1,35 @@
+{
+  "name": "pixi-plane",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/pixi-plane.js",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --open",
+    "build": "NODE_ENV=production  webpack --progress --profile --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/madclem/pixi-plane/issues"
+  },
+  "homepage": "https://github.com/madclem/pixi-plane#readme",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.12.10",
+    "@babel/runtime-corejs2": "^7.12.5",
+    "babel-loader": "^8.0.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^3.5.1"
+  },
+  "peerDependencies": {
+    "@pixi/core": "^5.3.3",
+    "@pixi/mesh": "^5.3.3"
+  }
+}
