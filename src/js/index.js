@@ -1,5 +1,6 @@
-import { Geometry, Shader } from "@pixi/core";
+import { Geometry, Shader, TextureMatrix } from "@pixi/core";
 
+import { Matrix } from "@pixi/math";
 import { Mesh } from "@pixi/mesh";
 import getTransform from "./utils/getTransform";
 import getUVS from "./utils/getUVS";
@@ -33,6 +34,7 @@ class PixiPlane extends Mesh {
     let shader = Shader.from(vertex, frag, {
       awesomeMatrix: getTransform(corners, points),
       uTexture: texture,
+      uTextureMatrix: Matrix.IDENTITY,
     });
 
     super(geometry, shader);
@@ -40,6 +42,8 @@ class PixiPlane extends Mesh {
     this._points = points;
     this._corners = corners;
     this._hasPoints = tPoints.length > 3;
+
+    this.uvMatrix = new TextureMatrix(texture);
 
     if (texture) this.texture = texture;
   }
@@ -70,6 +74,10 @@ class PixiPlane extends Mesh {
     this.geometry.getBuffer("aTextureCoord").update();
 
     this.shader.uniforms.awesomeMatrix = H;
+
+    if (this.uvMatrix.update()) {
+      this.shader.uniforms.uTextureMatrix = this.uvMatrix.mapCoord;
+    }
   }
 
   /**
@@ -88,12 +96,12 @@ class PixiPlane extends Mesh {
   set texture(mTexture) {
     this._corners[0].x = 0;
     this._corners[0].y = 0;
-    this._corners[1].x = mTexture.frame.width;
+    this._corners[1].x = mTexture.width;
     this._corners[1].y = 0;
-    this._corners[2].x = mTexture.frame.width;
-    this._corners[2].y = mTexture.frame.height;
+    this._corners[2].x = mTexture.width;
+    this._corners[2].y = mTexture.height;
     this._corners[3].x = 0;
-    this._corners[3].y = mTexture.frame.height;
+    this._corners[3].y = mTexture.height;
 
     if (!this._hasPoints) {
       this.resetPointsToTexture();
@@ -118,6 +126,7 @@ class PixiPlane extends Mesh {
     this.geometry.getBuffer("aVertexPosition").update();
 
     this.shader.uniforms.uTexture = mTexture;
+    this.uvMatrix.texture = mTexture;
     this._updateProjection();
   }
 }

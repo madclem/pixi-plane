@@ -12,7 +12,7 @@
     "url": ""
   },
   "keywords": [],
-  "author": "",
+  "author": "Clement Chenebault <clem.chenebault@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/madclem/pixi-plane/issues"
@@ -30,6 +30,8 @@
   },
   "peerDependencies": {
     "@pixi/core": "^5.3.3",
-    "@pixi/mesh": "^5.3.3"
-  }
+    "@pixi/mesh": "^5.3.3",
+    "@pixi/math": "^5.3.7"
+  },
+  "dependencies": {}
 }

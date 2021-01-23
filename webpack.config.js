@@ -39,6 +39,7 @@ const config = {
   externals: {
     "@pixi/core": "@pixi/core",
     "@pixi/mesh": "@pixi/mesh",
+    "@pixi/math": "@pixi/math",
   },
   module: {
     rules: [
