@@ -1,6 +1,6 @@
 {
   "name": "pixi-plane",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "lib/pixi-plane.js",
   "scripts": {
