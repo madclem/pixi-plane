@@ -35,6 +35,7 @@ class PixiPlane extends Mesh {
       awesomeMatrix: getTransform(corners, points),
       uTexture: texture,
       uTextureMatrix: Matrix.IDENTITY,
+      uAlpha: 1,
     });
 
     super(geometry, shader);
@@ -46,6 +47,10 @@ class PixiPlane extends Mesh {
     this.uvMatrix = new TextureMatrix(texture);
 
     if (texture) this.texture = texture;
+  }
+
+  setAlpha(value) {
+    this.shader.uniforms.uAlpha = value;
   }
 
   /**
@@ -128,6 +133,10 @@ class PixiPlane extends Mesh {
     this.shader.uniforms.uTexture = mTexture;
     this.uvMatrix.texture = mTexture;
     this._updateProjection();
+  }
+
+  get texture() {
+    return this.shader.uniforms.uTexture;
   }
 }
 
